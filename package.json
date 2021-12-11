@@ -1,0 +1,25 @@
+{
+    "name": "hollicode-vscode",
+    "displayName": "hollicode-vscode",
+    "description": "Hollicode language support for VSCode",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.0.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "hollicode",
+            "aliases": ["Hollicode", "hollicode"],
+            "extensions": [".hl"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "hollicode",
+            "scopeName": "source.hollicode",
+            "path": "./syntaxes/hollicode.tmLanguage.json"
+        }]
+    }
+}

@@ -1,11 +1,12 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Hollicode",
+	"scopeName": "source.hollicode",
 	"patterns": [
-		{ "include": "#directive" },
 		{ "include": "#comment" },
 		{ "include": "#anchor" },
 		{ "include": "#goto" },
+		{ "include": "#directive" },
 		{ "include": "#text-line" }
 	],
 	"repository": {
@@ -13,11 +14,12 @@
 			"begin": "^[ \t]*\\[",
 			"end": "\\]",
 			"patterns": [
+				{ "include": "#string-literal" },
+				{ "include": "#number-literal" },
+				{ "include": "#function-call" },
 				{ "include": "#keyword" },
 				{ "include": "#const-word" },
-				{ "include": "#identifier" },
-				{ "include": "#string-literal" },
-				{ "include": "#number-literal" }
+				{ "include": "#identifier" }
 			]
 		},
 		"comment": {
@@ -33,15 +35,19 @@
 			"name": "variable.parameter"
 		},
 		"text-line": {
-			"match": "^[ \t](\\*)?.+",
-			"name": "",
+			"match": "^[ \t]*(\\-)?.*$",
+			"name": "string.other",
 			"captures": {
 				"1": { "name": "keyword.operator" }
 			}
 		},
 		"keyword": {
-			"match": "\\b(?i:if|else|option|wait)\\b",
+			"match": "\\b(?i:if|else|option|wait|include|return)\\b",
 			"name": "keyword.language"
+		},
+		"function-call": {
+      "match": "\\b([A-Za-z_]\\w*)\\b(?=\\s*(?:[(]))",
+      "name": "entity.name.function"
 		},
 		"const-word": {
 			"match": "\\b(?i:true|false|nil)\\b",
@@ -57,18 +63,22 @@
           "begin": "\"",
           "end": "\"",
           "patterns": [
-            {  "name": "constant.character.escape",
-                "match": "\\\\."
+            {
+							"name": "constant.character.escape",
+              "match": "\\\\."
             }
           ],
           "name": "string.quoted.double"
-        }
+        },
+				{
+					"match": "(\\:[a-zA-Z_][a-zA-Z_0-9]*)",
+					"name": "string.quoted.other"
+				}
 			]
 		},
 		"number-literal": {
 			"match": "\\b\\-?(\\d*\\.)?\\d+\\b",
 			"name": "constant.numeric"
 		}
-	},
-	"scopeName": "source.hollicode"
+	}
 }

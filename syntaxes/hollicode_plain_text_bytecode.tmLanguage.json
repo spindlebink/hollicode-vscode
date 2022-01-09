@@ -1,0 +1,56 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Hollicode Plain Text Bytecode",
+	"scopeName": "source.hollicode_plain_text_bytecode",
+	"patterns": [
+		{ "include": "#header" },
+		{ "include": "#instruction" },
+		{ "include": "#string" },
+		{ "include": "#boolean" },
+		{ "include": "#number" },
+		{ "include": "#variable" },
+		{ "include": "#operator" }
+	],
+	"repository": {
+		"header": {
+			"match": "^(\\{.+\\})$",
+			"name": "meta.embedded.inline.json",
+			"patterns": [{ "include": "source.json" }]
+		},
+		"string": {
+			"match": "^(STR)\\t(.+)$",
+			"captures": {
+				"1": { "name": "keyword.control" },
+				"2": { "name": "string.quoted" }
+			}
+		},
+		"boolean": {
+			"match": "^(BOOL)\\t(true|false)$",
+			"captures": {
+				"1": { "name": "keyword.control" },
+				"2": { "name": "constant.language" }
+			}
+		},
+		"number": {
+			"match": "^(NUM|JMP|FJMP|TJMP|CALL|OPTION)\\t(\\d*(\\.\\d+)?)$",
+			"captures": {
+				"1": { "name": "keyword.control" },
+				"2": { "name": "constant.numeric" }
+			}
+		},
+		"variable": {
+			"match": "^(GETV)\\t([a-zA-Z_][a-zA-Z_0-9]*)$",
+			"captures": {
+				"1": { "name": "keyword.control" },
+				"2": { "name": "variable.name" }
+			}
+		},
+		"operator": {
+			"match": "^(BOP)\\t(.+)$",
+			"captures": {
+				"1": { "name": "keyword.control" },
+				"2": { "name": "keyword.operator" }
+			}
+		}
+	}
+}

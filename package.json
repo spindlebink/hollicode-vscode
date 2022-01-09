@@ -1,8 +1,10 @@
 {
     "name": "hollicode-vscode",
     "displayName": "hollicode-vscode",
+    "publisher": "spindlebink",
     "description": "Hollicode language support for VSCode",
-    "version": "0.0.1",
+    "version": "0.1.0",
+    "repository": "https://github.com/spindlebink/hollicode-vscode",
     "engines": {
         "vscode": "^1.0.0"
     },
@@ -10,16 +12,38 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "hollicode",
-            "aliases": ["Hollicode", "hollicode"],
-            "extensions": [".hl"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "hollicode",
-            "scopeName": "source.hollicode",
-            "path": "./syntaxes/hollicode.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "hollicode",
+                "aliases": ["Hollicode", "hollicode"],
+                "extensions": [".hlc"],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "hollicode_plain_text_bytecode",
+                "aliases": ["Hollicode Plain Text Bytecode", "hollicode_plain_text_bytecode"],
+                "extensions": [".hlct"],
+                "configuration": "./language-configuration-hlct.json"
+            },
+            {
+                "id": "json",
+                "extensions": [".hlcj"]
+            }
+        ],
+        "grammars": [
+            {
+                "language": "hollicode",
+                "scopeName": "source.hollicode",
+                "path": "./syntaxes/hollicode.tmLanguage.json"
+            },
+            {
+                "language": "hollicode_plain_text_bytecode",
+                "scopeName": "source.hollicode_plain_text_bytecode",
+                "path": "./syntaxes/hollicode_plain_text_bytecode.tmLanguage.json",
+                "embeddedLanguages": {
+                    "meta.embedded.inline.json": "source.json"
+                }
+            }
+        ]
     }
 }

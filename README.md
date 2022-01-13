@@ -4,7 +4,6 @@ A package to add Hollicode syntax highlighting support to VS Code. Being develop
 
 This package adds:
 * Hollicode highlighting to `.hlc` files
-* JSON highlighting to `.hlcj` files (Hollicode JSON bytecode)
 * Hollicode plain text bytecode highlighting to `.hlct` files. You should never really be editing bytecode by hand, but hey, there you go.
 
 Eventually, I'd like to add compile-on-save functionality, but I've got a lot on my plate right now so that'll happen when it happens.

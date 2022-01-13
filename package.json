@@ -24,10 +24,6 @@
                 "aliases": ["Hollicode Plain Text Bytecode", "hollicode_plain_text_bytecode"],
                 "extensions": [".hlct"],
                 "configuration": "./language-configuration-hlct.json"
-            },
-            {
-                "id": "json",
-                "extensions": [".hlcj"]
             }
         ],
         "grammars": [
